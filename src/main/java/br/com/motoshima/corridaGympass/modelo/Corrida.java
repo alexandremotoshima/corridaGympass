@@ -1,14 +1,14 @@
 package br.com.motoshima.corridaGympass.modelo;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.motoshima.corridaGympass.utils.OrdenacaoClassificacao;
+import br.com.motoshima.corridaGympass.utils.OrdenacaoPiloto;
 import br.com.motoshima.corridaGympass.utils.OrdenacaoVolta;
+import br.com.motoshima.corridaGympass.utils.TempoUtils;
 
 public class Corrida {
 	private Volta melhorVolta = new Volta();
@@ -52,10 +52,10 @@ public class Corrida {
 			System.out.println("Código do Piloto: " + classificacaoFinal.getPiloto().getCodigo());
 			System.out.println("Nome do Piloto: " + classificacaoFinal.getPiloto().getNome());			
 			System.out.println("Quantidade de Voltas Completadas: " + classificacaoFinal.getQtdVoltas());
-			System.out.println("Melhor volta do Piloto: " + converterTempo(classificacaoFinal.getMelhorVolta()));
-			System.out.println("Tempo Total de Prova: " + converterTempo(classificacaoFinal.getTempoTotal()));
+			System.out.println("Melhor volta do Piloto: " + TempoUtils.converterTempo(classificacaoFinal.getMelhorVolta()));
+			System.out.println("Tempo Total de Prova: " + TempoUtils.converterTempo(classificacaoFinal.getTempoTotal()));
 			System.out.println("Velocidade Média de Prova: " + classificacaoFinal.getVelocidadeMedia());
-			System.out.println("Tempo Após o Vencedor: " + converterTempo(classificacaoFinal.getTempoTotal()-classificacao.get(0).getTempoTotal()));
+			System.out.println("Tempo Após o Vencedor: " + TempoUtils.converterTempo(classificacaoFinal.getTempoTotal()-classificacao.get(0).getTempoTotal()));
 			System.out.println();
 			posicao++;
 		}
@@ -63,15 +63,8 @@ public class Corrida {
 		System.out.println("Melhor Volta:");
 		System.out.println("Código do Piloto: " + melhorVolta.getPiloto().getCodigo());
 		System.out.println("Nome do Piloto: " + melhorVolta.getPiloto().getNome());			
-		System.out.println("Tempo: " + converterTempo(melhorVolta.getTempo()));
+		System.out.println("Tempo: " + TempoUtils.converterTempo(melhorVolta.getTempo()));
 		
 		
-	}
-
-	private String converterTempo(int tempoMilisegundos) {
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTimeInMillis(tempoMilisegundos);
-		SimpleDateFormat s = new SimpleDateFormat("mm:ss.SSS"); 
-		return s.format(calendar.getTime()); 
 	}
 }

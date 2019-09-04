@@ -1,7 +1,6 @@
 package br.com.motoshima.corridaGympass.modelo;
 
 import java.time.LocalTime;
-import java.util.Comparator;
 
 public class Volta {
 	private LocalTime hora;
@@ -53,12 +52,4 @@ public Volta(LocalTime hora, Piloto piloto, int numero, int tempo, double veloci
 	public void setVelocidadeMedia(double velocidadeMedia) {
 		this.velocidadeMedia = velocidadeMedia;
 	} 
-}
-
-class OrdenacaoPiloto implements Comparator<Volta> 
-{ 
-    public int compare(Volta a, Volta b) 
-    { 
-        return a.getPiloto().getCodigo() - b.getPiloto().getCodigo(); 
-    } 
 }

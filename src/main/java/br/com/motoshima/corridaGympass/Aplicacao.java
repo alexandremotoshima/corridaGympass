@@ -11,18 +11,11 @@ import java.util.Scanner;
 import br.com.motoshima.corridaGympass.modelo.Corrida;
 import br.com.motoshima.corridaGympass.modelo.Piloto;
 import br.com.motoshima.corridaGympass.modelo.Volta;
+import br.com.motoshima.corridaGympass.utils.TempoUtils;
 
 public class Aplicacao {
 
-	public static int tempoEmMilisegundos(final String tempoVoltaString) {
-
-		String[] tempos = tempoVoltaString.replace(".", ":").split(":");
-		int minutos = Integer.parseInt(tempos[0])*60*1000;
-		int segundos = Integer.parseInt(tempos[1])*1000;
-		int milisegundo = Integer.parseInt(tempos[2]);
-
-		return minutos + segundos+ milisegundo;
-	}
+	
 	public static void main(String[] args) throws IOException, ParseException {
 		try {
 			ArrayList<Volta> voltas = new ArrayList<Volta>();	
@@ -37,7 +30,7 @@ public class Aplicacao {
 				sc.next();
 				String nomePiloto = sc.next();
 				int volta = sc.nextInt();
-				int tempo = Aplicacao.tempoEmMilisegundos(sc.next());
+				int tempo = TempoUtils.tempoEmMilisegundos(sc.next());
 				double velocidadeMedia = sc.nextDouble();
 	
 				voltas.add(new Volta(hora,new Piloto(codigoPiloto,nomePiloto),volta,tempo,velocidadeMedia));
