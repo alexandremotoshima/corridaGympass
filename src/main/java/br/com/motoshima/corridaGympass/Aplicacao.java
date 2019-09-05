@@ -8,19 +8,22 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import br.com.motoshima.corridaGympass.modelo.Corrida;
 import br.com.motoshima.corridaGympass.modelo.Piloto;
 import br.com.motoshima.corridaGympass.modelo.Volta;
 import br.com.motoshima.corridaGympass.utils.TempoUtils;
 
 public class Aplicacao {
+	static Logger logger = Logger.getLogger(Aplicacao.class);
 
 	
 	public static void main(String[] args) throws IOException, ParseException {
 		try {
 			ArrayList<Volta> voltas = new ArrayList<Volta>();	
 			
-			Scanner sc = new Scanner(new BufferedReader(new FileReader("log.log")));
+			Scanner sc = new Scanner(new BufferedReader(new FileReader("kart.log")));
 			//Pular primeira linha
 			sc.nextLine();
 			
@@ -40,9 +43,7 @@ public class Aplicacao {
 	
 			sc.close();
 		}catch (Exception e) {
-			System.out.println("Ocorreu um erro ao tentar verificar resultados da corrida.");
-			e.printStackTrace();
-//			logger.log(Level.SEVERE, "Ocorreu um erro ao tentar verificar resultados da corrida.", e);
+			logger.error("Ocorreu um erro ao tentar verificar resultados da corrida.", e);
 		}
 	}
 }
